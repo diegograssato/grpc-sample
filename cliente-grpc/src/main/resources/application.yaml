@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rest-client
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:production}
+  main:
+     banner-mode: "off"
+     lazy-initialization: true
+
+grpc:
+  client:
+    agenda:
+      address: static://localhost:6565
+      negotiationType: plaintext
+
+
+application:
+  timeZone: GMT-3

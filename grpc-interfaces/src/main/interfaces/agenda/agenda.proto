@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package org.dtux.interfaces.agenda;
+option java_package = "org.dtux.interfaces.agenda";
+option java_multiple_files = true;
+// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+import "google/protobuf/timestamp.proto";
+option java_outer_classname = "AgendaInterface";
+
+// Definição das estruturas de dados
+message Pessoa {
+
+  int32 id = 1;
+  string uuid = 2;
+  string nome = 3;
+  string email = 4;
+
+  enum TipoTelefone {
+    CELULAR = 0;
+    RESIDENCIAL = 1;
+    TRABALHO = 2;
+  }
+
+  message NumeroTelefone {
+    string numero = 1;
+    TipoTelefone tipo = 2;
+  }
+
+  repeated NumeroTelefone telefones = 5;
+  google.protobuf.Timestamp last_updated = 6;
+
+}
+
+message Resposta{
+  Pessoa resultado = 1;
+}
+
+message Input {
+  int32 number = 1;
+}
+
+// Definição da interface do serviço (métodos que poderão ser invocados)
+service Agenda {
+  rpc adicionar (Pessoa) returns (Resposta) {}
+  rpc adicionarStream (Input) returns (stream Resposta) {}
+  rpc buscar(Pessoa) returns (Pessoa){}
+}
