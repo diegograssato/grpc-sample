@@ -4,12 +4,13 @@ package org.dtux.agenda.usecase;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.dtux.agenda.interceptor.AgendaInterceptor;
 import org.dtux.interfaces.agenda.AgendaGrpc;
 import org.dtux.interfaces.agenda.Input;
 import org.dtux.interfaces.agenda.Pessoa;
 import org.dtux.interfaces.agenda.Resposta;
 
-@GrpcService
+@GrpcService(interceptors = { AgendaInterceptor.class })
 public class AgendaUseCase extends AgendaGrpc.AgendaImplBase {
 
     @Override
@@ -31,6 +32,7 @@ public class AgendaUseCase extends AgendaGrpc.AgendaImplBase {
 
         Runnable runnable = () -> {
             for (int i = 1; i <= request.getNumber(); i++) {
+
                 final Pessoa.NumeroTelefone numeroTelefone = Pessoa.NumeroTelefone
                         .newBuilder()
                         .setNumero("111-222-".concat(String.valueOf(i)))

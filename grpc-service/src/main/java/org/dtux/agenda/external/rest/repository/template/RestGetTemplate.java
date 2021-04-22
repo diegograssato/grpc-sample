@@ -23,7 +23,7 @@ public abstract class RestGetTemplate<T> {
             log.info("Preparing request to {} with method {} from {}.", uri.toUriString(), method.toString(), this.getClass().getSimpleName());
             final ResponseEntity<T> response = restTemplate.exchange(uri.toUriString(), method, httpRequest, type());
 
-            log.info("Preparing response to {} from {}.",  response.getStatusCode() == HttpStatus.OK ? response.getBody().toString() : null, this.getClass().getSimpleName());
+            log.info("Preparing response to {} from {}.", response.getStatusCode() == HttpStatus.OK ? response.getBody().toString() : null, this.getClass().getSimpleName());
             return response.getStatusCode() == HttpStatus.OK ? Optional.ofNullable(response.getBody()) : Optional.empty();
         } catch (final Exception e) {
             final String message = String.format(RepositoryException.CALL_ERROR, method, uri.toUriString());

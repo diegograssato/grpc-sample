@@ -6,6 +6,7 @@ import org.dtux.agenda.domain.Agenda;
 import org.dtux.agenda.exception.GatewayException;
 import org.dtux.agenda.external.gateway.AgendaGateway;
 import org.dtux.agenda.external.rest.repository.AgendaRepository;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = {"AgendaGatewayImpl"})
 public class AgendaGatewayImpl implements AgendaGateway {
 
     private final AgendaRepository repository;

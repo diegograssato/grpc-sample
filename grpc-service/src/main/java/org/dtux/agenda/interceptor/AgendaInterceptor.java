@@ -7,39 +7,22 @@ import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.interceptor.GrpcGlobalServerInterceptor;
 import org.dtux.agenda.domain.Agenda;
 import org.dtux.agenda.external.gateway.AgendaGateway;
+import org.dtux.agenda.interceptor.strategy.GrpcOnMessageInterceptor;
 import org.dtux.interfaces.agenda.Pessoa;
 import org.dtux.interfaces.agenda.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@GrpcGlobalServerInterceptor
+//@GrpcGlobalServerInterceptor
+@Component
 public class AgendaInterceptor implements ServerInterceptor {
 
     @Autowired
     private AgendaGateway agendaGateway;
 
-//    public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> serverCall, Metadata metadata, ServerCallHandler<ReqT, RespT> serverCallHandler) {
-//
-//        log.info("----------------------------------------------");
-//        log.info("Intercept data from {}.", this.getClass().getSimpleName());
-//
-//        Agenda agendaComplemento = agendaGateway.getComplemento();
-//
-//        // Checar Consentimento
-//        log.info(agendaComplemento.toString());
-//        metadata.
-//        metadata.put("uuid", agendaComplemento.getUuid());
-//
-//        log.info(serverCall.getMethodDescriptor().getFullMethodName());
-//
-//        log.info("Finish and checked {}.", this.getClass().getSimpleName());
-//
-//
-//        log.info("Finish intercept data from {}.", this.getClass().getSimpleName());
-//        log.info("----------------------------------------------");
-//
-//        return serverCallHandler.startCall(serverCall, metadata);
-//    }
+    @Autowired
+    private GrpcOnMessageInterceptor grpcOnMessageInterceptor;
 
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call, Metadata headers, ServerCallHandler<ReqT, RespT> next) {
@@ -61,6 +44,9 @@ public class AgendaInterceptor implements ServerInterceptor {
             public void onMessage(ReqT message) {
 
                 log.info("--------------   onMessage(Request) ----------------");
+
+//                message = (ReqT) grpcOnMessageInterceptor.onMessage(message);
+//                super.onMessage(message);
 
                 if (message instanceof Pessoa) {
 

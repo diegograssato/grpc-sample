@@ -20,8 +20,9 @@ public class Application {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         TimeZone.setDefault(TimeZone.getTimeZone(getTimezone));
     }
+
 
 }

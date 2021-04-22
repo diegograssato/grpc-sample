@@ -8,8 +8,8 @@ import java.util.Set;
 @Slf4j
 public class GatewayException extends BaseException {
 
-    static final long serialVersionUID = -1033896140745516769L;
     public static final String GATEWAY_ACCESS_ERROR = "[ %s ] Error when trying to get informations. %s";
+    static final long serialVersionUID = -1033896140745516769L;
 
     public GatewayException() {
         super();

@@ -1,28 +1,28 @@
 grpc:
-    enableReflection: true
-    server:
-        port: 6565
+  enableReflection: true
+  server:
+    port: 6565
 
 server:
-    port: 8888
+  port: 8888
 spring:
-    application:
-        name: grpc
-    profiles:
-        active: ${SPRING_PROFILES_ACTIVE:production}
-    main:
-        banner-mode: "off"
-        lazy-initialization: true
-    cache:
-        type: caffeine
-        caffeine:
-            spec: maximumSize=1000,expireAfterAccess=3600s
+  application:
+    name: grpc
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:production}
+  main:
+    banner-mode: "off"
+    lazy-initialization: true
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterAccess=3600s
 
 application:
-    timeZone: GMT-3
-    rest:
-        config:
-            timeout: 3000
-            connectTimeout: 300
-        agenda:
-            url: https://httpbin.org/uuid
+  timeZone: GMT-3
+  rest:
+    config:
+      timeout: 3000
+      connectTimeout: 300
+    agenda:
+      url: https://httpbin.org/uuid

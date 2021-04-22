@@ -10,15 +10,15 @@ import java.util.List;
 public class AgendaResponseMapper {
 
 
-    public static AgendaResponse map(final Pessoa agenda){
+    public static AgendaResponse map(final Pessoa agenda) {
 
         List<TelefoneResponse> telefoneResponseList = new ArrayList<>();
         agenda.getTelefonesList().forEach(a -> {
             telefoneResponseList.add(
                     TelefoneResponse.builder()
-                        .telefone(a.getNumero())
-                        .tipo(a.getTipo().toString())
-                    .build()
+                            .telefone(a.getNumero())
+                            .tipo(a.getTipo().toString())
+                            .build()
             );
         });
 

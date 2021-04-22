@@ -9,9 +9,8 @@ import java.util.Set;
 @Slf4j
 public class RepositoryException extends BaseException {
 
-    static final long serialVersionUID = -1033896140745516769L;
-
     public static final String CALL_ERROR = "Error making call [ %s ], at address: [ %s ].";
+    static final long serialVersionUID = -1033896140745516769L;
 
     public RepositoryException() {
         super();

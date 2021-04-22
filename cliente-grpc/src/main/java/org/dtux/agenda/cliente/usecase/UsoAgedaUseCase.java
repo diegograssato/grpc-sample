@@ -21,12 +21,12 @@ public class UsoAgedaUseCase {
     @GrpcClient("agenda")
     private AgendaGrpc.AgendaBlockingStub agendaStub;
 
-
     public List<AgendaResponse> adicionar(int number) {
 
         List<AgendaResponse> agendaResponseList = new ArrayList<>(number);
         for (int i = 1; i <= number; i++) {
 
+            log.info("*************************************************************");
             final Pessoa.NumeroTelefone numeroTelefone = Pessoa.NumeroTelefone
                     .newBuilder()
                     .setNumero("111-222-".concat(String.valueOf(i)))
